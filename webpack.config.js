@@ -1,5 +1,9 @@
 var webpack = require('webpack');
 
+var entries = {
+  'router': './src/index.js'
+};
+
 var plugins = [
   new webpack.optimize.DedupePlugin(),
   new webpack.optimize.OccurenceOrderPlugin(),
@@ -12,6 +16,7 @@ var plugins = [
 if (process.env.NODE_ENV === 'dev') {
   plugins.push(new webpack.HotModuleReplacementPlugin());
   plugins.push(new webpack.NoErrorsPlugin());
+  entries.demo = './src/demo.js';
 } else {
   plugins.push(new webpack.optimize.UglifyJsPlugin({
     compressor: {
@@ -25,11 +30,11 @@ module.exports = {
   output: {
     path: './dist/',
     publicPath: '/assets/',
-    filename: 'router.js',
+    filename: '[name].js',
     library: 'ReactSimpleRouter',
     libraryTarget: 'umd'
   },
-  entry: './src/index.js',
+  entry: entries,
   resolve: {
     extensions: ['', '.js', '.jsx', 'es6']
   },

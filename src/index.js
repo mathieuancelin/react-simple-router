@@ -1,8 +1,6 @@
-import React from 'react';
-
+export { default as SimpleRouter } from './simplerouter';
+export { default as HistoryRouter } from './historyrouter';
+export { default as HashRouter } from './hashrouter';
 export { default as Router } from './router';
 export { default as Route } from './route';
-
-export const RouterShape = React.PropTypes.shape({
-  navigateTo: React.PropTypes.func.isRequired,
-}).isRequired;
+export { RouterShape } from './shapes';
