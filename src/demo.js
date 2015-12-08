@@ -12,7 +12,7 @@ const Page1 = React.createClass({
     router: RouterShape,
   },
   navigate() {
-    this.props.router.navigateTo('/page2');
+    this.props.router.navigateTo('/page2', { key1: 'value1' });
   },
   render() {
     return (
@@ -35,6 +35,7 @@ const Page2 = React.createClass({
     return (
       <div>
         <h1>Page 2</h1>
+        <p>{this.props.params.key1}</p>
         <button type="button" onClick={this.navigate}>navigate</button>
       </div>
     );
@@ -55,7 +56,7 @@ const NotFound = React.createClass({
 const App = React.createClass({
   render() {
     return (
-      <Router strategy="history" start="/page1" notFound={NotFound}>
+      <Router strategy="hash" start="/page1" notFound={NotFound}>
         <Route name="/page1" component={Page1} />
         <Route name="/page2" component={Page2} />
       </Router>

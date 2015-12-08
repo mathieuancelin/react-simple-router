@@ -11,13 +11,14 @@ export default React.createClass({
   getInitialState() {
     return {
       page: null,
+      params: {},
     };
   },
   componentDidMount() {
     this.navigateTo(this.props.start);
   },
-  navigateTo(page) {
-    this.setState({ page });
+  navigateTo(page, params = {}) {
+    this.setState({ page, params });
   },
   render() {
     if (this.state.page === null) {
@@ -28,10 +29,10 @@ export default React.createClass({
     const controls = { navigateTo: this.navigateTo };
     if (page) {
       const Component = page.props.component;
-      return <Component {...page.props} router={controls} />;
+      return <Component {...page.props} router={controls} params={this.state.params} />;
     } else {
       const NotFound = this.props.notFound;
-      return <NotFound router={controls} />;
+      return <NotFound router={controls} params={this.state.params} />;
     }
   },
 });
