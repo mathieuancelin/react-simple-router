@@ -13,8 +13,3 @@ export function extractQueryParams() {
   }
   return params;
 }
-
-export function extractPathParams(pattern, path) {
-  const params = {};
-  return params;
-}

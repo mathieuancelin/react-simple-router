@@ -18,7 +18,7 @@ export default React.createClass({
   componentDidMount() {
     window.addEventListener('hashchange', this.processHash);
     if (window.location.hash) {
-      this.setState({ page: window.location.hash });
+      setTimeout(() => this.setState({ page: window.location.hash }));
     } else {
       this.changeUrl(this.props.start);
     }
@@ -42,24 +42,27 @@ export default React.createClass({
     const pathName = this.state.page.split('?')[0];
     const page = this.props.children
       .filter(child => child.props.name === pathName)[0];
-    const pathParams = Utils.extractPathParams(pathName, window.location.pathName);
     const controls = { navigateTo: this.changeUrl };
     if (page) {
       const Component = page.props.component;
-      return <Component
-        {...page.props}
-        router={controls}
-        queryParams={queryParams}
-        pathParams={pathName}
-        params={this.state.params} />;
+      return (
+        <Component
+          {...page.props}
+          router={controls}
+          queryParams={queryParams}
+          pathParams={pathName}
+          params={this.state.params} /> // eslint-disable-line
+        );
     } else {
       const NotFound = this.props.notFound;
-      return <NotFound
-        router={controls}
-        params={this.state.params}
-        queryParams={queryParams}
-        pathParams={pathName}
-        params={this.state.params} />;
+      return (
+        <NotFound
+          router={controls}
+          params={this.state.params}
+          queryParams={queryParams}
+          pathParams={pathName}
+          params={this.state.params} /> // eslint-disable-line
+      );
     }
   },
 });
