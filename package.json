@@ -4,7 +4,7 @@
   "description": "A stupid simple router fro React",
   "private": true,
   "main": "lib/index.js",
-  "jsnext:main": "lib/index.js",
+  "jsnext:main": "src/index.js",
   "scripts": {
     "lint": "eslint src tests",
     "test": "NODE_ENV=test mocha --compilers js:babel-core/register tests/index.js",
