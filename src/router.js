@@ -37,5 +37,6 @@ export default React.createClass({
         </HistoryRouter>
       );
     }
+    throw new Error(`${this.props.strategy} is not a supported strategy`);
   },
 });
